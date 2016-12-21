@@ -4,6 +4,14 @@ SUPERUSER_EMBEDDED := true
 
 PRODUCT_BOOTANIMATION := vendor/viper/prebuilt/common/bootanimation/bootanimation.zip
 
+# PixelLauncher
+PRODUCT_COPY_FILES += \
+    vendor/viper/prebuilt/common/apk/PixelLauncher/PixelLauncher.apk:system/priv-app/PixelLauncher/PixelLauncher.apk
+	
+# GoogleWallpaperPicker
+PRODUCT_COPY_FILES += \
+    vendor/viper/prebuilt/common/apk/GoogleWallpaperPicker/GoogleWallpaperPicker.apk:system/app/GoogleWallpaperPicker/GoogleWallpaperPicker.apk
+
 # Common dictionaries
 PRODUCT_PACKAGE_OVERLAYS += vendor/viper/overlay/dictionaries
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
