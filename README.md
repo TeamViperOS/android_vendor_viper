@@ -1,7 +1,7 @@
-[Android Open Kang Project](http://aokp.co)
+[Welcome to ViperOS]
 ====================================
 
-![Kanged Unicorn](http://aokp.co/images/cms-images/106.png)
+![ViperOS](http://i.imgur.com/bwSVDSV.png)
 
 Download the Source
 ===================
@@ -13,7 +13,7 @@ Initializing Repository
 
 Initiate core trees without any device/kernel/vendor:
 
-    $ repo init -u https://github.com/AOKP/platform_manifest.git -b nougat
+    $ repo init -u https://github.com/Viper0S/android_manifest.git -b n7.1
 
 Sync the repository:
 
@@ -32,7 +32,7 @@ After the sync is finished, please read the [instructions from the Android site]
 You can also build for specific devices (eg. hammerhead) like this:
 
     . build/envsetup.sh
-    lunch aokp_hammerhead-userdebug
-    mka rainbowfarts
+    lunch viper_hammerhead-userdebug
+    mka poison
 
 Remember to `make clobber && make clean` every now and then!

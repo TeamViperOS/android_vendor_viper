@@ -1,16 +1,16 @@
 # Permissions for cmsdk services
 PRODUCT_COPY_FILES += \
-    vendor/aokp/configs/permissions/org.cyanogenmod.appsuggest.xml:system/etc/permissions/org.cyanogenmod.appsuggest.xml \
-    vendor/aokp/configs/permissions/org.cyanogenmod.audio.xml:system/etc/permissions/org.cyanogenmod.audio.xml \
-    vendor/aokp/configs/permissions/org.cyanogenmod.livedisplay.xml:system/etc/permissions/org.cyanogenmod.livedisplay.xml \
-    vendor/aokp/configs/permissions/org.cyanogenmod.livelockscreen.xml:system/etc/permissions/org.cyanogenmod.livelockscreen.xml \
-    vendor/aokp/configs/permissions/org.cyanogenmod.partner.xml:system/etc/permissions/org.cyanogenmod.partner.xml \
-    vendor/aokp/configs/permissions/org.cyanogenmod.performance.xml:system/etc/permissions/org.cyanogenmod.performance.xml \
-    vendor/aokp/configs/permissions/org.cyanogenmod.profiles.xml:system/etc/permissions/org.cyanogenmod.profiles.xml \
-    vendor/aokp/configs/permissions/org.cyanogenmod.statusbar.xml:system/etc/permissions/org.cyanogenmod.statusbar.xml \
-    vendor/aokp/configs/permissions/org.cyanogenmod.telephony.xml:system/etc/permissions/org.cyanogenmod.telephony.xml \
-    vendor/aokp/configs/permissions/org.cyanogenmod.theme.xml:system/etc/permissions/org.cyanogenmod.theme.xml \
-    vendor/aokp/configs/permissions/org.cyanogenmod.weather.xml:system/etc/permissions/org.cyanogenmod.weather.xml
+    vendor/viper/configs/permissions/org.cyanogenmod.appsuggest.xml:system/etc/permissions/org.cyanogenmod.appsuggest.xml \
+    vendor/viper/configs/permissions/org.cyanogenmod.audio.xml:system/etc/permissions/org.cyanogenmod.audio.xml \
+    vendor/viper/configs/permissions/org.cyanogenmod.livedisplay.xml:system/etc/permissions/org.cyanogenmod.livedisplay.xml \
+    vendor/viper/configs/permissions/org.cyanogenmod.livelockscreen.xml:system/etc/permissions/org.cyanogenmod.livelockscreen.xml \
+    vendor/viper/configs/permissions/org.cyanogenmod.partner.xml:system/etc/permissions/org.cyanogenmod.partner.xml \
+    vendor/viper/configs/permissions/org.cyanogenmod.performance.xml:system/etc/permissions/org.cyanogenmod.performance.xml \
+    vendor/viper/configs/permissions/org.cyanogenmod.profiles.xml:system/etc/permissions/org.cyanogenmod.profiles.xml \
+    vendor/viper/configs/permissions/org.cyanogenmod.statusbar.xml:system/etc/permissions/org.cyanogenmod.statusbar.xml \
+    vendor/viper/configs/permissions/org.cyanogenmod.telephony.xml:system/etc/permissions/org.cyanogenmod.telephony.xml \
+    vendor/viper/configs/permissions/org.cyanogenmod.theme.xml:system/etc/permissions/org.cyanogenmod.theme.xml \
+    vendor/viper/configs/permissions/org.cyanogenmod.weather.xml:system/etc/permissions/org.cyanogenmod.weather.xml
 
 # CM Platform Library
 PRODUCT_PACKAGES += \
@@ -46,9 +46,9 @@ endif
 
 # CyanogenMod Platform SDK Version
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.aokp.build.version.plat.sdk=$(CM_PLATFORM_SDK_VERSION)
+  ro.viper.build.version.plat.sdk=$(CM_PLATFORM_SDK_VERSION)
 
 # CyanogenMod Platform Internal
 PRODUCT_PROPERTY_OVERRIDES += \
-  ro.aokp.build.version.plat.rev=$(CM_PLATFORM_REV)
+  ro.viper.build.version.plat.rev=$(CM_PLATFORM_REV)
 

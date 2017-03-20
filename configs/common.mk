@@ -1,42 +1,11 @@
-PRODUCT_BRAND ?= aokp
+PRODUCT_BRAND ?= viper
 
 SUPERUSER_EMBEDDED := true
 
-ifneq ($(TARGET_SCREEN_WIDTH) $(TARGET_SCREEN_HEIGHT),$(space))
-# determine the smaller dimension
-TARGET_BOOTANIMATION_SIZE := $(shell \
-  if [ "$(TARGET_SCREEN_WIDTH)" -lt "$(TARGET_SCREEN_HEIGHT)" ]; then \
-    echo $(TARGET_SCREEN_WIDTH); \
-  else \
-    echo $(TARGET_SCREEN_HEIGHT); \
-  fi )
-
-# get a sorted list of the sizes
-bootanimation_sizes := $(subst .zip,, $(shell ls vendor/aokp/prebuilt/bootanimation))
-bootanimation_sizes := $(shell echo -e $(subst $(space),'\n',$(bootanimation_sizes)) | sort -rn)
-
-# find the appropriate size and set
-define check_and_set_bootanimation
-$(eval TARGET_BOOTANIMATION_NAME := $(shell \
-  if [ -z "$(TARGET_BOOTANIMATION_NAME)" ]; then \
-    if [ "$(1)" -le "$(TARGET_BOOTANIMATION_SIZE)" ]; then \
-      echo $(1); \
-      exit 0; \
-    fi;
-  fi;
-  echo $(TARGET_BOOTANIMATION_NAME); ))
-endef
-$(foreach size,$(bootanimation_sizes), $(call check_and_set_bootanimation,$(size)))
-
-ifeq ($(TARGET_BOOTANIMATION_HALF_RES),true)
-PRODUCT_BOOTANIMATION := vendor/aokp/prebuilt/bootanimation/halfres/$(TARGET_BOOTANIMATION_NAME).zip
-else
-PRODUCT_BOOTANIMATION := vendor/aokp/prebuilt/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip
-endif
-endif
+PRODUCT_BOOTANIMATION := vendor/viper/prebuilt/common/bootanimation/bootanimation.zip
 
 # Common dictionaries
-PRODUCT_PACKAGE_OVERLAYS += vendor/aokp/overlay/dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/viper/overlay/dictionaries
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
@@ -75,50 +44,50 @@ endif
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/aokp/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/aokp/prebuilt/common/bin/50-aokp.sh:system/addon.d/50-aokp.sh \
-    vendor/aokp/prebuilt/common/bin/blacklist:system/addon.d/blacklist \
-    vendor/aokp/prebuilt/common/bin/99-backup.sh:system/addon.d/99-backup.sh \
-    vendor/aokp/prebuilt/common/etc/backup.conf:system/etc/backup.conf
+    vendor/viper/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/viper/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/viper/prebuilt/common/bin/50-viper.sh:system/addon.d/50-viper.sh \
+    vendor/viper/prebuilt/common/bin/blacklist:system/addon.d/blacklist \
+    vendor/viper/prebuilt/common/bin/99-backup.sh:system/addon.d/99-backup.sh \
+    vendor/viper/prebuilt/common/etc/backup.conf:system/etc/backup.conf
 
 # Backup Services whitelist
 PRODUCT_COPY_FILES += \
-    vendor/aokp/configs/permissions/backup.xml:system/etc/sysconfig/backup.xml
+    vendor/viper/configs/permissions/backup.xml:system/etc/sysconfig/backup.xml
 
 # Signature compatibility validation
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
+    vendor/viper/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
 
 # init.d support
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/etc/init.d/00start:system/etc/init.d/00start \
-    vendor/aokp/prebuilt/common/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
-    vendor/aokp/prebuilt/common/etc/sysctl.conf:system/etc/sysctl.conf \
-    vendor/aokp/prebuilt/common/bin/sysinit:system/bin/sysinit
+    vendor/viper/prebuilt/common/etc/init.d/00start:system/etc/init.d/00start \
+    vendor/viper/prebuilt/common/etc/init.d/01sysctl:system/etc/init.d/01sysctl \
+    vendor/viper/prebuilt/common/etc/sysctl.conf:system/etc/sysctl.conf \
+    vendor/viper/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 # userinit support
 ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
+    vendor/viper/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 endif
 
-# AOKP-specific init file
+# viper-specific init file
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/etc/init.local.rc:root/init.aokp.rc \
+    vendor/viper/prebuilt/common/etc/init.local.rc:root/init.viper.rc \
 
 # Installer
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/bin/persist.sh:install/bin/persist.sh \
-    vendor/aokp/prebuilt/common/etc/persist.conf:system/etc/persist.conf
+    vendor/viper/prebuilt/common/bin/persist.sh:install/bin/persist.sh \
+    vendor/viper/prebuilt/common/etc/persist.conf:system/etc/persist.conf
 
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/lib/libmicrobes_jni.so:system/lib/libmicrobes_jni.so \
-    vendor/aokp/prebuilt/common/etc/resolv.conf:system/etc/resolv.conf
+    vendor/viper/prebuilt/common/lib/libmicrobes_jni.so:system/lib/libmicrobes_jni.so \
+    vendor/viper/prebuilt/common/etc/resolv.conf:system/etc/resolv.conf
 
 # Copy over added mimetype supported in libcore.net.MimeUtils
 PRODUCT_COPY_FILES += \
-    vendor/aokp/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
+    vendor/viper/prebuilt/common/lib/content-types.properties:system/lib/content-types.properties
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -129,34 +98,31 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_0719.kl
 
 PRODUCT_COPY_FILES += \
-    vendor/aokp/configs/permissions/com.aokp.android.xml:system/etc/permissions/com.aokp.android.xml
+    vendor/viper/configs/permissions/com.viper.android.xml:system/etc/permissions/com.viper.android.xml
 
 # Include CM audio files
-include vendor/aokp/configs/cm_audio.mk
+include vendor/viper/configs/cm_audio.mk
 
 # Theme engine
-include vendor/aokp/configs/themes_common.mk
+include vendor/viper/configs/themes_common.mk
 
 ifneq ($(TARGET_DISABLE_CMSDK), true)
 # CMSDK
-include vendor/aokp/configs/cmsdk_common.mk
+include vendor/viper/configs/cmsdk_common.mk
 endif
 
-# Required AOKP packages
+# Required viper packages
 PRODUCT_PACKAGES += \
     BluetoothExt \
     CellBroadcastReceiver \
     Development \
     LatinIME \
     LatinImeDictionaryPack \
-    masquerade \
-    mGerrit \
     Microbes \
-    ROMControl \
     Stk \
     ThemeInterfacer
 
-# Optional AOKP packages
+# Optional viper packages
 PRODUCT_PACKAGES += \
     libemoji \
     LiveWallpapersPicker \
@@ -179,11 +145,15 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     LiveLockScreenService \
     LockClock \
-    Trebuchet \
     WallpaperPicker \
     WeatherManagerService \
     WeatherProvider
 
+# Custom Omni packages
+PRODUCT_PACKAGES += \
+    OmniJaws \
+    OmniStyle
+	
 # Exchange support
 PRODUCT_PACKAGES += \
     Exchange2
@@ -293,7 +263,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.substratum.verified=true
 
 # Common overlay
-DEVICE_PACKAGE_OVERLAYS += vendor/aokp/overlay/common
+DEVICE_PACKAGE_OVERLAYS += vendor/viper/overlay/common
 
 PRODUCT_VERSION_MAJOR = 14
 PRODUCT_VERSION_MINOR = 1
@@ -302,40 +272,43 @@ PRODUCT_VERSION_MAINTENANCE = 0
 # Version information used on all builds
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_VERSION_TAGS=release-keys USER=android-build BUILD_UTC_DATE=$(shell date +"%s")
 
-AOKP_BUILD_DATE := $(shell LC_ALL=C date +%Y-%m-%d_%H%M)
-AOKP_BRANCH=nougat
+VIPER_BUILD_DATE := $(shell LC_ALL=C date +%Y-%m-%d)
+VIPER_BRANCH=7.1.1
 
-ifneq ($(AOKP_BUILD),)
-    # AOKP_BUILD=<goo version int>/<build string>
+# Increase Viper Version with each major release.
+VIPER_BUILD_VERSION := 1.0
+
+ifneq ($(VIPER_BUILD),)
+    # VIPER_BUILD=<goo version int>/<build string>
     PRODUCT_PROPERTY_OVERRIDES += \
-        ro.goo.developerid=aokp \
-        ro.goo.rom=aokp \
-        ro.goo.version=$(shell echo $(AOKP_BUILD) | cut -d/ -f1)
+        ro.goo.developerid=viper \
+        ro.goo.rom=viper \
+        ro.goo.version=$(shell echo $(VIPER_BUILD) | cut -d/ -f1)
 
-    AOKP_VERSION=$(TARGET_PRODUCT)_$(AOKP_BRANCH)_$(shell echo $(AOKP_BUILD) | cut -d/ -f2)
+    VIPER_VERSION=$(TARGET_PRODUCT)_$(VIPER_BRANCH)_$(shell echo $(VIPER_BUILD) | cut -d/ -f2)
 else
-    ifeq ($(AOKP_BUILDTYPE),)
-        # AOKP_BUILDTYPE not defined
-	AOKP_BUILDTYPE := unofficial
+    ifeq ($(VIPER_BUILDTYPE),)
+        # VIPER_BUILDTYPE not defined
+	VIPER_BUILDTYPE := Naja
     endif
 
-    AOKP_VERSION=$(TARGET_PRODUCT)_$(AOKP_BRANCH)_$(AOKP_BUILDTYPE)_$(AOKP_BUILD_DATE)
+    VIPER_VERSION=$(TARGET_PRODUCT)_$(VIPER_BRANCH)_$(VIPER_BUILDTYPE)_$(VIPER_BUILD_VERSION)_$(VIPER_BUILD_DATE)
 endif
 
-AOKP_DISPLAY_VERSION := $(AOKP_VERSION)
+VIPER_DISPLAY_VERSION := $(VIPER_VERSION)
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.aokp.version=$(AOKP_VERSION) \
-    ro.aokp.branch=$(AOKP_BRANCH) \
-    ro.aokp.device=$(AOKP_DEVICE) \
-    ro.aokp.releasetype=$(AOKP_BUILDTYPE) \
-    ro.modversion=$(AOKP_VERSION) \
-    ro.aokp.display.version=$(AOKP_DISPLAY_VERSION)
+    ro.viper.version=$(VIPER_VERSION) \
+    ro.viper.branch=$(VIPER_BRANCH) \
+    ro.viper.device=$(VIPER_DEVICE) \
+    ro.viper.releasetype=$(VIPER_BUILDTYPE) \
+    ro.modversion=$(VIPER_VERSION) \
+    ro.viper.display.version=$(VIPER_DISPLAY_VERSION)
 
 PRODUCT_EXTRA_RECOVERY_KEYS += \
-    vendor/aokp/build/target/product/security/aokp-releasekey
+    vendor/viper/build/target/product/security/viper-releasekey
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
--include vendor/aokp/configs/partner_gms.mk
+-include vendor/viper/configs/partner_gms.mk
 
 $(call prepend-product-if-exists, vendor/extra/product.mk)

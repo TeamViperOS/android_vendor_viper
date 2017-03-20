@@ -1,4 +1,4 @@
-# AOKP Extras
+# VIPER Extras
 
 on init
     export ANDROID_CACHE /cache

@@ -18,9 +18,9 @@ INTERNAL_CM_PLATFORM_API_FILE := $(TARGET_OUT_COMMON_INTERMEDIATES)/PACKAGING/cm
 INTERNAL_CM_PLATFORM_REMOVED_API_FILE := $(TARGET_OUT_COMMON_INTERMEDIATES)/PACKAGING/cm_removed.txt
 FRAMEWORK_CM_PLATFORM_API_FILE := $(TOPDIR)vendor/cmsdk/api/cm_current.txt
 FRAMEWORK_CM_PLATFORM_REMOVED_API_FILE := $(TOPDIR)vendor/cmsdk/api/cm_removed.txt
-FRAMEWORK_CM_API_NEEDS_UPDATE_TEXT := $(TOPDIR)vendor/aokp/build/core/apicheck_msg_current.txt
+FRAMEWORK_CM_API_NEEDS_UPDATE_TEXT := $(TOPDIR)vendor/viper/build/core/apicheck_msg_current.txt
 
-BUILD_MAVEN_PREBUILT := $(TOP)/vendor/aokp/build/core/maven_artifact.mk
-PUBLISH_MAVEN_PREBUILT := $(TOP)/vendor/aokp/build/core/maven_artifact_publish.mk
+BUILD_MAVEN_PREBUILT := $(TOP)/vendor/viper/build/core/maven_artifact.mk
+PUBLISH_MAVEN_PREBUILT := $(TOP)/vendor/viper/build/core/maven_artifact_publish.mk
 
-BUILD_HTTP_PREBUILT := $(TOP)/vendor/aokp/build/core/http_prebuilt.mk
+BUILD_HTTP_PREBUILT := $(TOP)/vendor/viper/build/core/http_prebuilt.mk

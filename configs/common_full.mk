@@ -1,13 +1,13 @@
-# Inherit common AOKP stuff
-$(call inherit-product, vendor/aokp/configs/common.mk)
+# Inherit common VIPER stuff
+$(call inherit-product, vendor/viper/configs/common.mk)
 
 # Bring in all video files
 $(call inherit-product, frameworks/base/data/videos/VideoPackage2.mk)
 
 PRODUCT_SIZE := full
 
-# Include AOKP LatinIME dictionaries
-PRODUCT_PACKAGE_OVERLAYS += vendor/aokp/overlay/dictionaries
+# Include VIPER LatinIME dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/viper/overlay/dictionaries
 
 PRODUCT_PACKAGES += \
     VideoEditor \

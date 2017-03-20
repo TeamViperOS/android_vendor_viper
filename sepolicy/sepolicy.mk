@@ -1,7 +1,7 @@
 #
 # This policy configuration will be used by all products that
-# inherit from AOKP
+# inherit from VIPER
 #
 
 BOARD_SEPOLICY_DIRS += \
-    vendor/aokp/sepolicy
+    vendor/viper/sepolicy
