@@ -1,5 +1,5 @@
-[Welcome to ViperOS]
-====================================
+ViperOs Project
+===============
 
 ![ViperOS](http://i.imgur.com/bwSVDSV.png)
 
@@ -13,11 +13,11 @@ Initializing Repository
 
 Initiate core trees without any device/kernel/vendor:
 
-    $ repo init -u https://github.com/Viper0S/android_manifest.git -b n7.1
+    $ repo init -u https://github.com/Viper0S/manifest.git -b n-mr1
 
 Sync the repository:
 
-    $ repo sync --force-sync
+    $ repo sync -c -f -j8 --force-sync --no-clone-bundle --no-tags
 
 ***
 
